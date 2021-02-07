@@ -16,7 +16,7 @@ namespace Business.Concrete
         }
         public List<Car> GetAll()
         {
-            //İş kodları
+            // Business Logic
             return _carDal.GetAll();
         }
     }
