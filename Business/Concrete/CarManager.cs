@@ -14,18 +14,6 @@ namespace Business.Concrete
         {
             _carDal = carDal;
         }
-
-        /// <summary>
-        /// Add new Car
-        /// </summary>
-        /// <param name="car">
-        /// Car Entity
-        /// </param>
-        public void AddCar(Car car)
-        {
-            _carDal.Add(car);
-        }
-
         public List<Car> GetAll()
         {
             // Business Logic
