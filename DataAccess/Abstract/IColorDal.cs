@@ -4,8 +4,7 @@ using System.Text;
 
 namespace DataAccess.Abstract
 {
-    public interface IBrandDal
+    public interface IColorDal
     {
-
     }
 }
