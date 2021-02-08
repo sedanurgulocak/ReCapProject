@@ -8,7 +8,7 @@ namespace DataAccess.Abstract
     /// <summary>
     /// This interface includes custom query for Car Entity
     /// </summary>
-    public interface ICarDal
+    public interface ICarDal:IEntityRepository<Car>
     {
         
     }
