@@ -19,5 +19,10 @@ namespace Business.Concrete
             // Business Logic
             return _carDal.GetAll();
         }
+
+        public List<Car> GetAllByBrandId(int id)
+        {
+            return _carDal.GetAll(c => c.BrandId == id);
+        }
     }
 }
