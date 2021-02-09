@@ -10,5 +10,6 @@ namespace Business.Abstract
         List<Car> GetAll();
         List<Car> GetAllByBrandId(int id);
         List<Car> GetByDailyPrice(decimal min, decimal max);
+        void Add(Car car);
     }
 }
