@@ -11,7 +11,19 @@ namespace ConsoleUI
         {
             //CarTest();
 
-            BrandTest();
+            //BrandTest();
+
+            ColorTest();
+        }
+
+        private static void ColorTest()
+        {
+            ColorManager colorManager = new ColorManager(new EfColorDal());
+            foreach (var color in colorManager.GetAll())
+            {
+                Console.WriteLine(color.ColorName);
+
+            }
         }
 
         private static void BrandTest()
