@@ -14,6 +14,19 @@ namespace Business.Concrete
         {
             _carDal = carDal;
         }
+
+        public void Add(Car car)
+        {
+            if ((car.Descriptions).Length > 2 && car.DailyPrice > 0)
+            {
+                _carDal.Add(car);
+            }
+            else
+            {
+                Console.WriteLine("The daily price of the car must be greater than zero and must have an description");
+            }
+        }
+
         public List<Car> GetAll()
         {
             // Business Logic
