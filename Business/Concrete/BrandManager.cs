@@ -16,6 +16,18 @@ namespace Business.Concrete
             _brandDal = brandDal;
         }
 
+        public void Add(Brand brand)
+        {
+            _brandDal.Add(brand);
+            Console.WriteLine("Yeni marka eklendi");
+        }
+
+        public void Delete(Brand brand)
+        {
+            _brandDal.Delete(brand);
+            Console.WriteLine("Marka silindi");
+        }
+
         public List<Brand> GetAll()
         {
             //Business Code
@@ -26,5 +38,12 @@ namespace Business.Concrete
         {
             return _brandDal.GetById(b => b.BrandId == brandId);
         }
+
+        public void Update(Brand brand)
+        {
+            _brandDal.Update(brand);
+            Console.WriteLine("Marka güncellendi");
+        }
+
     }
 }
