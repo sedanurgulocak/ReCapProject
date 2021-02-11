@@ -41,7 +41,7 @@ namespace ConsoleUI
 
             foreach (var car in carManager.GetCarDetailDtos())
             {
-                Console.WriteLine(car.Descriptions+ "/" + car.BrandName + "/" + car.ColorName);
+                Console.WriteLine(car.Descriptions+ "/" + car.BrandName + "/" + car.ColorName + "/" + car.DailyPrice);
             }
         }
     }
