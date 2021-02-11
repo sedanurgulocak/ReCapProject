@@ -28,6 +28,12 @@ namespace Business.Concrete
             }
         }
 
+        public void Delete(Car car)
+        {
+            _carDal.Delete(car);
+            Console.WriteLine("Araba kaydı silindi");
+        }
+
         public List<Car> GetAll()
         {
             // Business Logic
@@ -47,6 +53,12 @@ namespace Business.Concrete
         public List<CarDetailDto> GetCarDetailDtos()
         {
             return _carDal.GetCarDetailDtos();
+        }
+
+        public void Update(Car car)
+        {
+            _carDal.Update(car);
+            Console.WriteLine("Araba kaydı güncellendi");
         }
     }
 }
