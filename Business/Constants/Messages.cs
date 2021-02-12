@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -21,5 +22,6 @@ namespace Business.Constants
         public static string ColorDeleted = "The color was deleted";
         public static string ColorUpdated = "The color wad updated";
         public static string ColorListed = "Colors listed";
+        public static string MaintenanceTime= "The system is under maintenance";
     }
 }
