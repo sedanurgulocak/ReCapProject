@@ -51,12 +51,22 @@ namespace ConsoleUI
             //carManager.Add(new Car {BrandId=1, ColorId=1, ModelYear="2021", Descriptions="Manuel dizel", DailyPrice = 500 } );
 
             //carManager.Update(new Car { Id = 1003, BrandId = 2, ColorId = 3, ModelYear = "1990", Descriptions = "Manuel dizel", DailyPrice = 600});
-           
 
-            foreach (var car in carManager.GetCarDetailDtos())
+            var result = carManager.GetCarDetailDtos();
+
+            if (result.Success==true)
             {
-                Console.WriteLine(car.Descriptions+ "/" + car.BrandName + "/" + car.ColorName + "/" + car.DailyPrice);
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(car.Descriptions + "/" + car.BrandName + "/" + car.ColorName + "/" + car.DailyPrice);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+
+            
         }
     }
 }
