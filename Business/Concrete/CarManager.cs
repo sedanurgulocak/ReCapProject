@@ -37,10 +37,14 @@ namespace Business.Concrete
 
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
+            if (DateTime.Now.Hour==12)
+            {
+                return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
+            }
             // Business Logic
-            return _carDal.GetAll();
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarsListed);
         }
 
         public List<Car> GetAllByBrandId(int id)
@@ -53,14 +57,14 @@ namespace Business.Concrete
             return _carDal.GetAll(c => c.DailyPrice >= min && c.DailyPrice <= max);
         }
 
-        /*public IDataResult<Car> GetById(int carId)
+        public IDataResult<Car> GetById(int carId)
         {
             return new SuccessDataResult<Car>(_carDal.GetById(c => c.Id == carId));
-        }*/
+        }
         
-        public List<CarDetailDto> GetCarDetailDtos()
+        public IDataResult<List<CarDetailDto>> GetCarDetailDtos()
         {
-            return _carDal.GetCarDetailDtos();
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailDtos());
         }
 
         public IResult Update(Car car)
