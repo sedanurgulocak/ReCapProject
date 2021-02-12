@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -21,11 +22,11 @@ namespace Business.Concrete
         {
             if ((car.Descriptions).Length < 2 && car.DailyPrice < 0)
             {
-                Console.WriteLine("The daily price of the car must be greater than zero and must have an description");
+                return new ErrorResult(Messages.CarNameInvalid);
             }
 
             _carDal.Add(car);
-            return new Result();
+            return new SuccessResult(Messages.CarAdded);
 
         }
 
