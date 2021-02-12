@@ -30,10 +30,11 @@ namespace Business.Concrete
 
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             _carDal.Delete(car);
-            Console.WriteLine("Araba kaydı silindi");
+            return new SuccessResult(Messages.CarDeleted);
+
         }
 
         public List<Car> GetAll()
@@ -52,15 +53,20 @@ namespace Business.Concrete
             return _carDal.GetAll(c => c.DailyPrice >= min && c.DailyPrice <= max);
         }
 
+        /*public IDataResult<Car> GetById(int carId)
+        {
+            return new SuccessDataResult<Car>(_carDal.GetById(c => c.Id == carId));
+        }*/
+        
         public List<CarDetailDto> GetCarDetailDtos()
         {
             return _carDal.GetCarDetailDtos();
         }
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
             _carDal.Update(car);
-            Console.WriteLine("Araba kaydı güncellendi");
+            return new SuccessResult(Messages.);
         }
     }
 }
