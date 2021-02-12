@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -16,16 +17,16 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
-            if ((car.Descriptions).Length > 2 && car.DailyPrice > 0)
-            {
-                _carDal.Add(car);
-            }
-            else
+            if ((car.Descriptions).Length < 2 && car.DailyPrice < 0)
             {
                 Console.WriteLine("The daily price of the car must be greater than zero and must have an description");
             }
+
+            _carDal.Add(car);
+            return new Result();
+
         }
 
         public void Delete(Car car)
