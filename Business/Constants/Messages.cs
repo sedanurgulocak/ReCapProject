@@ -38,5 +38,8 @@ namespace Business.Constants
         public static string RentalDeleted = "The rental was deleted";
         public static string RentalUpdated = "The rental was updated";
         public static string RentalListed = "Rentals listed";
+        public static string RentalAddedError = "Cannot be rented because the vehicle is not delivered";
+        public static string RentalUpdatedReturnDate = "The vehicle has been received";
+        public static string RentalUpdatedRetunDate = "Vehicle already received";
     }
 }
