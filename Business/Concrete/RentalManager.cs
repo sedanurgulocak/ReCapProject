@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Core.Utilities.Results;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;
@@ -10,9 +11,22 @@ namespace Business.Concrete
 {
     public class RentalManager : IRentalService
     {
+        IRentalDal _rentalDal;
+
+        public RentalManager(IRentalDal rentalDal)
+        {
+            _rentalDal = rentalDal;
+        }
+
         public IResult Add(Rental rental)
         {
-            throw new NotImplementedException();
+            var result = CheckReturnDate(rental.CarId);
+            if (!result.Success)
+            {
+                return new ErrorResult(result.Message);
+            }
+            _rentalDal.Add(rental);
+            return new SuccessResult(result.Message);
         }
 
         public IResult CheckReturnDate(int carId)
