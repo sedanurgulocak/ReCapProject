@@ -57,7 +57,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Rental>(_rentalDal.GetById(r => r.RentalId == id));
         }
 
-        public IDataResult<List<RentalDetailDto>> GetRentalDetailsDto(int carId)
+        public IDataResult<List<RentalDetailDto>> GetRentalDetailDtos(int carId)
         {
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetailDtos(r => r.CarId == carId));
         }

@@ -10,22 +10,26 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarTest();
+            //CarTest();
 
             //BrandTest();
 
             //ColorTest();
+
+            RentalTest();
         }
 
         private static void RentalTest()
         {
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
-            var result = rentalManager.Add(new Rental { CarId = 1, CustomerId = 1, 
+            /*var result = rentalManager.Add(new Rental { CarId = 1, CustomerId = 1, 
                 RentDate = new DateTime(2021, 2, 20), ReturnDate = new DateTime(2021, 2, 25) });
+            */
             
+
             foreach (var rent in rentalManager.GetAll().Data)
             {
-                Console.WriteLine(result.Message);
+                Console.WriteLine(rent.CarId + "---" + rent.CustomerId +"--"+ rent.RentDate + "--"+ rent.ReturnDate);
             }
 
             
