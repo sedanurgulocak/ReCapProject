@@ -25,7 +25,17 @@ namespace ConsoleUI
             /*var result = rentalManager.Add(new Rental { CarId = 1, CustomerId = 1, 
                 RentDate = new DateTime(2021, 2, 20), ReturnDate = new DateTime(2021, 2, 25) });
             */
-            
+
+            var result = rentalManager.Add(new Rental
+            {
+                CarId = 2,
+                CustomerId = 1,
+                RentDate = new DateTime(2021, 2, 16),
+                ReturnDate = new DateTime(2021, 2, 20)
+            });
+
+            Console.WriteLine(result.Message);
+
 
             foreach (var rent in rentalManager.GetAll().Data)
             {
@@ -34,6 +44,7 @@ namespace ConsoleUI
 
             
         }
+
         
 
         private static void ColorTest()
