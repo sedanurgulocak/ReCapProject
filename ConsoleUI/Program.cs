@@ -17,6 +17,21 @@ namespace ConsoleUI
             //ColorTest();
         }
 
+        private static void RentalTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var result = rentalManager.Add(new Rental { CarId = 1, CustomerId = 1, 
+                RentDate = new DateTime(2021, 2, 20), ReturnDate = new DateTime(2021, 2, 25) });
+            
+            foreach (var rent in rentalManager.GetAll().Data)
+            {
+                Console.WriteLine(result.Message);
+            }
+
+            
+        }
+        
+
         private static void ColorTest()
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
@@ -25,11 +40,11 @@ namespace ConsoleUI
             //colorManager.Update(new Color {ColorId=1003, ColorName = "Gri" });
 
 
-            foreach (var color in colorManager.GetAll())
+            /*foreach (var color in colorManager.GetAll())
             {
                 Console.WriteLine(color.ColorName);
 
-            }
+            }*/
         }
 
         private static void BrandTest()
@@ -38,10 +53,10 @@ namespace ConsoleUI
 
             //brandManager.Delete(new Brand {BrandId=4 ,BrandName = "MINI" });
 
-            foreach (var brand in brandManager.GetAll())
+            /*foreach (var brand in brandManager.GetAll())
             {
                 Console.WriteLine(brand.BrandName);
-            }
+            }*/
         }
 
         private static void CarTest()
