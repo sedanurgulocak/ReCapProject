@@ -6,6 +6,7 @@ using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -42,32 +43,42 @@ namespace Business.Concrete
 
         public IResult Delete(Rental rental)
         {
-            throw new NotImplementedException();
+            _rentalDal.Delete(rental);
+            return new SuccessResult(Messages.BrandDeleted);
         }
 
         public IDataResult<List<Rental>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll());
         }
 
         public IDataResult<Rental> GetById(int id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Rental>(_rentalDal.GetById(r => r.RentalId == id));
         }
 
         public IDataResult<List<RentalDetailDto>> GetRentalDetailsDto(int carId)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetailDtos(r => r.CarId == carId));
         }
 
         public IResult Update(Rental rental)
         {
-            throw new NotImplementedException();
+            _rentalDal.Update(rental);
+            return new SuccessResult(Messages.RentalUpdated);
         }
 
         public IResult UpdateReturnDate(int carId)
         {
-            throw new NotImplementedException();
+            var result = _rentalDal.GetAll(r => r.CarId == carId);
+            var updatedRental = result.LastOrDefault();
+            if (updatedRental.ReturnDate !=null)
+            {
+                return new ErrorResult(Messages.RentalUpdatedReturnDateError);
+            }
+            updatedRental.ReturnDate = DateTime.Now;
+            _rentalDal.Update(updatedRental);
+            return new SuccessResult(Messages.RentalUpdatedReturnDate);
         }
     }
 }
