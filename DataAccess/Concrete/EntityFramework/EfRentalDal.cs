@@ -5,13 +5,14 @@ using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
     public class EfRentalDal : EfEntityRepositoryBase<Rental, RentACarContext>, IRentalDal
     {
-        public List<RentalDetailDto> GetRentalDetailDtos()
+        public List<RentalDetailDto> GetRentalDetailDtos(Expression<Func<Rental, bool>> filter= null)
         {
             using (RentACarContext context= new RentACarContext())
             {

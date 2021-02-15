@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -31,7 +32,12 @@ namespace Business.Concrete
 
         public IResult CheckReturnDate(int carId)
         {
-            throw new NotImplementedException();
+            var result = _rentalDal.GetRentalDetailDtos(x => x.CarId == carId && x.ReturnDate == null);
+            if (result.Count > 0)
+            {
+                return new ErrorResult(Messages.RentalAddedError);
+            }
+            return new SuccessResult(Messages.RentalAdded);
         }
 
         public IResult Delete(Rental rental)
