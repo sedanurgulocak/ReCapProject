@@ -31,16 +31,6 @@ namespace Business.Concrete
             return new SuccessResult(Messages.RentalAdded);
         }
 
-        public IResult CheckReturnDate(int carId)
-        {
-            var result = _rentalDal.GetRentalDetailDtos(x => x.CarId == carId && x.ReturnDate == null);
-            if (result.Count > 0)
-            {
-                return new ErrorResult(Messages.RentalAddedError);
-            }
-            return new SuccessResult(Messages.RentalAdded);
-        }
-
         public IResult Delete(Rental rental)
         {
             _rentalDal.Delete(rental);

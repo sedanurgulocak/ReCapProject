@@ -26,8 +26,8 @@ namespace ConsoleUI
         private static void RentalTest()
         {
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
-            var result = rentalManager.Add(new Rental { CarId = 3, CustomerId = 3, 
-                RentDate = new DateTime(2021, 2, 16), ReturnDate = new DateTime(2021, 2, 28) });
+            /*var result = rentalManager.Add(new Rental { CarId = 3, CustomerId = 3, 
+                RentDate = new DateTime(2021, 2, 16), ReturnDate = new DateTime(2021, 2, 28) });*/
             
 
             /*var result = rentalManager.Add(new Rental
@@ -38,7 +38,7 @@ namespace ConsoleUI
                 ReturnDate = new DateTime(2021, 3, 20)
             });*/
 
-            Console.WriteLine(result.Message);
+            //Console.WriteLine(result.Message);
 
             /*foreach (var rent in rentalManager.GetAll().Data)
             {
