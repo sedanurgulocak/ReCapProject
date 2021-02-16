@@ -16,7 +16,9 @@ namespace ConsoleUI
 
             //ColorTest();
 
-            RentalTest();
+            //RentalTest();
+
+            //UserTest();
         }
 
         private static void RentalTest()
@@ -26,15 +28,15 @@ namespace ConsoleUI
                 RentDate = new DateTime(2021, 2, 20), ReturnDate = new DateTime(2021, 2, 25) });
             */
 
-            var result = rentalManager.Add(new Rental
+            /*var result = rentalManager.Add(new Rental
             {
                 CarId = 2,
                 CustomerId = 1,
                 RentDate = new DateTime(2021, 2, 16),
                 ReturnDate = new DateTime(2021, 2, 20)
-            });
+            });*/
 
-            Console.WriteLine(result.Message);
+            //Console.WriteLine(result.Message);
 
 
             foreach (var rent in rentalManager.GetAll().Data)
@@ -44,8 +46,21 @@ namespace ConsoleUI
 
             
         }
+        private static void CustomerTest()
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            var result = customerManager.Add(new Customer {CompanyName="M2 Müsteri", UserId=3 });
+            Console.WriteLine(result.Message);
+        }
 
-        
+        private static void UserTest()
+        {
+            //UserManager userManager = new UserManager(new EfUserDal());
+            //var result = userManager.Add(new User { FirstName = "Deniz", LastName = "GÜNGÖR", Email = "deniz@gmail.com", Password = "456" });
+
+            //Console.WriteLine(result.Message);
+
+        }   
 
         private static void ColorTest()
         {
