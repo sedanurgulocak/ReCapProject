@@ -22,13 +22,13 @@ namespace Business.Concrete
 
         public IResult Add(Rental rental)
         {
-            var result = CheckReturnDate(rental.CarId);
-            if (!result.Success)
+            var result = _rentalDal.GetAll(r=>rental.CarId==rental.CarId && r.ReturnDate==null);
+            if (result.Count > 0)
             {
-                return new ErrorResult(result.Message);
+                return new ErrorResult(Messages.RentalAddedError);
             }
             _rentalDal.Add(rental);
-            return new SuccessResult(result.Message);
+            return new SuccessResult(Messages.RentalAdded);
         }
 
         public IResult CheckReturnDate(int carId)
