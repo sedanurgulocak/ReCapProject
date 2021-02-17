@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Business.Abstract;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,14 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CarsController : ControllerBase
     {
+        //Loose coupling
+        ICarService _carService;
+        public CarsController(ICarService carService)
+        {
+            _carService = carService;
+        }
+
+
+
     }
 }
