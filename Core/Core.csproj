@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CrossCuttingConcerns\" />
+    <Folder Include="CrossCuttingConcerns\Validation\" />
   </ItemGroup>
 
 </Project>
