@@ -10,6 +10,7 @@ using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
@@ -76,6 +77,17 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.CarImageLimitExceeded);
             }
             return new SuccessResult();
+        }
+
+        private List<CarImage> CheckIfAnyCarImageExists(int carId)
+        {
+            string path = Environment.CurrentDirectory + @"\WebAPI\CarImages\car-default.jpg";
+            var result = _carImageDal.GetAll(c => c.CarId == carId).Any();
+            if (result)
+            {
+                return _carImageDal.GetAll(c => c.CarId == carId);
+            }
+            return new List<CarImage>{ new CarImage { CarId=carId, ImagePath=path, Date=DateTime.Now}};
         }
     }    
 }
