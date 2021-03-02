@@ -13,7 +13,7 @@ namespace Core.Utilities.Helpers
         {
             FileInfo fileInfo = new FileInfo(file.FileName);
             string fileExtension = fileInfo.Extension;
-            string path = Environment.CurrentDirectory + @"\Images";
+            string path = Environment.CurrentDirectory + @"\WebAPI\CarImages";
             string newPath = Guid.NewGuid().ToString() + fileExtension;
             string result = $@"{path}\{newPath}";
             return result;
