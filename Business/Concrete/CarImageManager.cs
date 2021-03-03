@@ -16,7 +16,7 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class CarImageManager :ICarImageService
+    public class CarImageManager : ICarImageService
     {
         ICarImageDal _carImageDal;
         public CarImageManager(ICarImageDal carImageDal)
@@ -25,15 +25,19 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(CarImageValidator))]
-        public IResult Add(IFormFile file, CarImage carImage)
+        public IResult Add(IFormFile file, int carId)
         {
-            IResult result = BusinessRules.Run(CheckIfCarImageLimitExceeded(carImage.CarId));
+            IResult result = BusinessRules.Run(CheckIfCarImageLimitExceeded(carId));
             if (result != null)
             {
                 return result;
             }
+            var carImage = new CarImage
+            {
+                CarId = carId,
+                CarImageDate = DateTime.Now
+            };
             carImage.ImagePath = FileHelper.Add(file);
-            carImage.CarImageDate = DateTime.Now;
             _carImageDal.Add(carImage);
             return new SuccessResult();
         }
@@ -48,7 +52,13 @@ namespace Business.Concrete
 
         public IDataResult<List<CarImage>> GetAll()
         {
-            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll());
+            var images = _carImageDal.GetAll();
+            if (images.Count == 0)
+            {
+                var data = new List<CarImage> { new CarImage { ImagePath = "default" } };
+                return new SuccessDataResult<List<CarImage>>(data);
+            }
+            return new SuccessDataResult<List<CarImage>>(images);
         }
 
         public IDataResult<List<CarImage>> GetByCarId(int id)
@@ -87,7 +97,7 @@ namespace Business.Concrete
             {
                 return _carImageDal.GetAll(c => c.CarId == carId);
             }
-            return new List<CarImage>{ new CarImage { CarId=carId, ImagePath=path, CarImageDate=DateTime.Now}};
+            return new List<CarImage> { new CarImage { CarId = carId, ImagePath = path, CarImageDate = DateTime.Now } };
         }
-    }    
+    }
 }
