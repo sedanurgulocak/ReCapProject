@@ -13,7 +13,7 @@ namespace Core.Utilities.Helpers
         {
             FileInfo fileInfo = new FileInfo(file.FileName);
             string fileExtension = fileInfo.Extension;
-            string path = Environment.CurrentDirectory + @"\WebAPI\CarImages";
+            string path = Environment.CurrentDirectory + @"\CarImages";
             string newPath = Guid.NewGuid().ToString() + fileExtension;
             string result = $@"{path}\{newPath}";
             return result;
@@ -22,16 +22,19 @@ namespace Core.Utilities.Helpers
         public static string Add(IFormFile file)
         {
             string sourcePath = Path.GetTempFileName();
+            string destFileName = CreateNewFilePath(file);
+
             if (file.Length > 0)
             {
-                using (var stream =new FileStream(sourcePath, FileMode.Create))
+                using (var stream =new FileStream(destFileName, FileMode.Create))
                 {
                     file.CopyTo(stream);
                 }
             }
 
-            string destFileName = CreateNewFilePath(file);
-            File.Move(sourcePath, destFileName);
+            //string destFileName = CreateNewFilePath(file);
+            
+            //File.Move(sourcePath, destFileName);
             return destFileName;
         }
 
