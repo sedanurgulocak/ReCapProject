@@ -30,7 +30,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  ColorName = cl.ColorName, 
                                  Descriptions = c.Descriptions, 
                                  DailyPrice=c.DailyPrice,
-                                 CarImageDate=ci.Date,
+                                 CarImageDate=ci.CarImageDate,
                                  ImagePath=ci.ImagePath
                              
                              };
