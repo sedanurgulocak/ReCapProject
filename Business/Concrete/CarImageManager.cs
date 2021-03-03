@@ -43,8 +43,12 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(CarImageValidator))]
-        public IResult Delete(CarImage carImage)
+        public IResult Delete(int carImageId)
         {
+            var carImage = new CarImage
+            {
+                CarId = carImageId,
+            };
             FileHelper.Delete(carImage.ImagePath);
             _carImageDal.Delete(carImage);
             return new SuccessResult();
