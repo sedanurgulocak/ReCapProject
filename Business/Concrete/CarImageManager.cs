@@ -55,7 +55,7 @@ namespace Business.Concrete
             var images = _carImageDal.GetAll();
             if (images.Count == 0)
             {
-                var data = new List<CarImage> { new CarImage { ImagePath = "default" } };
+                var data = new List<CarImage> { new CarImage { ImagePath = @"\car-default.jpg" } };
                 return new SuccessDataResult<List<CarImage>>(data);
             }
             return new SuccessDataResult<List<CarImage>>(images);
