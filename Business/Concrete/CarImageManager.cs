@@ -47,7 +47,7 @@ namespace Business.Concrete
         {
             var carImage = new CarImage
             {
-                CarId=carImageId,
+                CarId = carImageId,
             };
             FileHelper.Delete(carImage.ImagePath);
             _carImageDal.Delete(carImage);
