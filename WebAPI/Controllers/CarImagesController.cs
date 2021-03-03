@@ -81,7 +81,7 @@ namespace WebAPI.Controllers
         public IActionResult Delete([FromForm] int id)
         {
             var carImage = _carImageService.GetById(id).Data;
-            var result = _carImageService.Delete(carImage);
+            var result = _carImageService.Delete(id);
             if (result.Success)
             {
                 return Ok(result);
