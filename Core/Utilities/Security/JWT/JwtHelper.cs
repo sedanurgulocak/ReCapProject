@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Linq;
 using System.IdentityModel.Tokens.Jwt;
+using Core.Extensions;
 
 namespace Core.Utilities.Security.JWT
 {
