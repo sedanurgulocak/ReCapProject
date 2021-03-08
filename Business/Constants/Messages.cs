@@ -42,5 +42,7 @@ namespace Business.Constants
         public static string RentalAddedError = "Cannot be rented because the vehicle is not delivered";
         public static string RentalUpdatedReturnDate = "The vehicle has been received";
         public static string RentalUpdatedReturnDateError = "Vehicle already received";
+
+        public static string AuthorizationDenied = "Yetkiniz yok";
     }
 }
