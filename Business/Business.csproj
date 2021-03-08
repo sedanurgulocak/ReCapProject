@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BusinessAspects\" />
+    <Folder Include="BusinessAspects\Autofac\" />
   </ItemGroup>
 
 </Project>
