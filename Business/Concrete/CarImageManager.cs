@@ -38,6 +38,8 @@ namespace Business.Concrete
                 CarImageDate = DateTime.Now
             };
             carImage.ImagePath = FileHelper.Add(file);
+            var data = carImage.ImagePath.Split('\\').LastOrDefault();
+            carImage.ImagePath = "/images/"+data;
             _carImageDal.Add(carImage);
             return new SuccessResult();
         }
@@ -74,6 +76,8 @@ namespace Business.Concrete
         public IResult Update(IFormFile file, CarImage carImage)
         {
             carImage.ImagePath = FileHelper.Update(_carImageDal.GetById(c => c.Id == carImage.Id).ImagePath, file);
+            var data = carImage.ImagePath.Split('\\').LastOrDefault();
+            carImage.ImagePath = "/images/"+data;
             carImage.CarImageDate = DateTime.Now;
             _carImageDal.Update(carImage);
             return new SuccessResult();
