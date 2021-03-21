@@ -13,6 +13,8 @@ namespace Entities.Concrete
         public string ModelYear { get; set; }
         public decimal DailyPrice { get; set; }
         public string Descriptions { get; set; }
-
+        public virtual Brand Brand { get; set; }
+        public virtual ICollection<CarImage> CarImages { get; set; }
+        public virtual Color Color { get; set; }
     }
 }
