@@ -86,6 +86,19 @@ namespace WebAPI.Controllers
 
         }
 
+        [HttpGet("getallbycolorid")]
+        public IActionResult GetAllByColorId(int id)
+        {
+            var result = _carService.GetAllByColorId(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+
+        }
+
+
         [HttpGet("getbydailyprice")]
         public IActionResult GetByDailyPrice(decimal min, decimal max)
         {
@@ -105,6 +118,15 @@ namespace WebAPI.Controllers
             {
                 return Ok(result);
             }
+            return BadRequest(result);
+        }
+
+        [HttpGet("{carId}", Name = "GetCarDetail")]
+        public IActionResult GetCarDetail([FromRoute]int carId)
+        {
+            var result = _carService.GetByIdDetail(carId);
+            if (result.Success)
+                return Ok(result);
             return BadRequest(result);
         }
     }
