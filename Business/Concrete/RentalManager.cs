@@ -25,13 +25,13 @@ namespace Business.Concrete
         [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
-            var result = _rentalDal.GetAll(r=>rental.CarId==rental.CarId && r.ReturnDate==null);
-            if (result.Count > 0)
+            if (IsRentCheck(rental))
             {
-                return new ErrorResult(Messages.RentalAddedError);
+                _rentalDal.Add(rental);
+                return new SuccessResult(Messages.RentalAdded);
             }
-            _rentalDal.Add(rental);
-            return new SuccessResult(Messages.RentalAdded);
+            else
+                return new ErrorResult(Messages.RentalAddedError);
         }
 
         public IResult Delete(Rental rental)
@@ -55,10 +55,20 @@ namespace Business.Concrete
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetailDtos());
         }
 
-        /*public IDataResult<List<RentalDetailDto>> GetRentalDetailDtos(int carId)
+        public IDataResult<List<RentalDetailDto>> GetRentalDetailsById(int carId)
         {
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetailDtos(r => r.CarId == carId));
-        }*/
+        }
+
+        public bool IsRentCheck(Rental rental)
+        {
+            var result = _rentalDal.GetAll(r => r.CarId == rental.CarId && (r.RentDate.Date == rental.RentDate.Date || r.ReturnDate.Date >= rental.RentDate));
+            if (result.Count > 0)
+            {
+                return false;
+            }
+            return true;
+        }
 
         public IResult Update(Rental rental)
         {
@@ -70,7 +80,7 @@ namespace Business.Concrete
         {
             var result = _rentalDal.GetAll(r => r.CarId == carId);
             var updatedRental = result.LastOrDefault();
-            if (updatedRental.ReturnDate !=null)
+            if (updatedRental.ReturnDate != null)
             {
                 return new ErrorResult(Messages.RentalUpdatedReturnDateError);
             }
