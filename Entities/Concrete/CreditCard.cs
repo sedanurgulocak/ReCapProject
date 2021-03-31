@@ -12,7 +12,6 @@ namespace Entities.Concrete
         public string CardNumber { get; set; }
         public string CVV { get; set; }
         public string ExpirationDate { get; set; }
-        public decimal MonetInTheCard { get; set; }
 
     }
 }
