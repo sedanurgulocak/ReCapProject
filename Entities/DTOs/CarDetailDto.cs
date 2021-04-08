@@ -13,7 +13,7 @@ namespace Entities.DTOs
         public string ColorName { get; set; }
         public decimal DailyPrice { get; set; }
         public string ModelYear { get; set; }
-
+        public int FindeksScore { get; set; }
         public DateTime CarImageDate { get; set; }
         public List<string> ImagePath { get; set; }
 
