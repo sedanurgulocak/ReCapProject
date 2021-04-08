@@ -20,5 +20,6 @@ namespace Business.Abstract
         IDataResult<List<Car>> GetAllByColorId(int id);
         IDataResult<List<CarDetailDto>> GetByIdDetail(int id);
         IDataResult<List<CarDetailDto>> GetCarDetailsByBrandIdAndColorId(int brandId, int colorId);
+        decimal CalculateFindeksScore(int carId);
     }
 }
