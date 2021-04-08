@@ -14,10 +14,12 @@ namespace Business.Concrete
     public class CustomerManager : ICustomerService
     {
         ICustomerDal _customerDal;
+        private readonly ICarService _carService;
 
-        public CustomerManager(ICustomerDal customerDal)
+        public CustomerManager(ICustomerDal customerDal, ICarService carService)
         {
             _customerDal = customerDal;
+            _carService = carService;
         }
 
         [ValidationAspect(typeof(CustomerValidator))]
@@ -25,6 +27,19 @@ namespace Business.Concrete
         {
             _customerDal.Add(customer);
             return new SuccessResult(Messages.CustomerAdded);
+        }
+
+        public void AddFindeksScore(int customerId, int carId)
+        {
+            var score = _carService.CalculateFindeksScore(carId);
+            var customer = _customerDal.GetById(c => c.CustomerId == customerId);
+            if (customer.FindeksScore <1900)
+            {
+                var newCustomerScore = customer.FindeksScore + score;
+                Update(new Customer { CustomerId = customer.CustomerId, UserId = customer.UserId, CompanyName = customer.CompanyName, FindeksScore = (int)newCustomerScore });
+
+            }
+
         }
 
         public IResult Delete(Customer customer)
@@ -48,5 +63,6 @@ namespace Business.Concrete
             _customerDal.Update(customer);
             return new SuccessResult(Messages.CustomerUpdated);
         }
+
     }
 }
