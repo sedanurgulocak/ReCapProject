@@ -4,6 +4,7 @@ using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
+using Core.Utilities.Security.Hashing;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -44,10 +45,23 @@ namespace Business.Concrete
             return new SuccessDataResult<User>(_userDal.GetById(u=>u.UserId==id));
         }
 
-        public IResult Update(User user)
+        public IResult Update(User user, string password)
         {
-            _userDal.Update(user);
-            return new SuccessResult(Messages.UserUpdated);
+            
+            byte[] passwordHash, passwordSalt;
+            HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
+            var updatedUser = new User
+            {
+                UserId = user.UserId,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt,
+                Status = user.Status
+            };
+            _userDal.Update(updatedUser);
+            return new SuccessDataResult<User>(Messages.UserUpdated);
         }
 
         public IDataResult<List<OperationClaim>> GetClaims(User user)
