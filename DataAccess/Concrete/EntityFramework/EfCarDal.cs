@@ -31,7 +31,8 @@ namespace DataAccess.Concrete.EntityFramework
                         Descriptions = s.Descriptions,
                         DailyPrice = s.DailyPrice,
                         ModelYear = s.ModelYear,
-                        ImagePath = s.CarImages.Select(sk => sk.ImagePath).ToList()
+                        ImagePath = s.CarImages.Select(sk => sk.ImagePath).ToList(),
+                        FindeksScore =s.FindeksScore
 
                     }).ToList();
                     return result;
@@ -52,6 +53,7 @@ namespace DataAccess.Concrete.EntityFramework
                         DailyPrice = s.DailyPrice,
                         ModelYear = s.ModelYear,
                         ImagePath = s.CarImages.Select(sk => sk.ImagePath).ToList(),
+                        FindeksScore = s.FindeksScore
                         
 
                     }).ToList();
@@ -78,7 +80,8 @@ namespace DataAccess.Concrete.EntityFramework
                         Descriptions = s.Descriptions,
                         DailyPrice = s.DailyPrice,
                         ModelYear = s.ModelYear,
-                        ImagePath = s.CarImages.Select(sk => sk.ImagePath).ToList()
+                        ImagePath = s.CarImages.Select(sk => sk.ImagePath).ToList(),
+                        FindeksScore = s.FindeksScore
 
                     }).ToList();
                 return result;
