@@ -25,7 +25,7 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        //[SecuredOperation("car.add,admin")]
+        [SecuredOperation("car.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")]
         public IResult Add(Car car)
@@ -96,5 +96,14 @@ namespace Business.Concrete
             _carDal.Update(car);
             return new SuccessResult(Messages.CarUpdated);
         }
+
+        public decimal CalculateFindeksScore(int carId)
+        {
+            var car = _carDal.GetById(c => c.Id == carId);
+            var scoreToAdd = (car.DailyPrice * 5) / 100;
+            return scoreToAdd;
+        }
+
+
     }
 }
