@@ -16,22 +16,32 @@ namespace Business.Concrete
     public class RentalManager : IRentalService
     {
         IRentalDal _rentalDal;
+        private readonly ICarService _carService;
+        private readonly ICustomerService _customerService;
 
-        public RentalManager(IRentalDal rentalDal)
+        public RentalManager(IRentalDal rentalDal, ICarService carService, ICustomerService customerService)
         {
             _rentalDal = rentalDal;
+            _carService = carService;
+            _customerService = customerService;
         }
 
         [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
-            if (IsRentCheck(rental))
+            if (FindeksCheck(rental))
             {
-                _rentalDal.Add(rental);
-                return new SuccessResult(Messages.RentalAdded);
+                if (IsRentCheck(rental))
+                {
+                    _rentalDal.Add(rental);
+                    _customerService.AddFindeksScore(rental.CustomerId, rental.CarId);
+                    return new SuccessResult(Messages.RentalAdded);
+                }
+                else
+                    return new ErrorResult(Messages.RentalAddedError);
             }
             else
-                return new ErrorResult(Messages.RentalAddedError);
+                return new ErrorResult(Messages.FindeksError);
         }
 
         public IResult Delete(Rental rental)
@@ -69,6 +79,22 @@ namespace Business.Concrete
             }
             return true;
         }
+
+        public bool FindeksCheck(Rental rental)
+        {
+            var car = _carService.GetById(rental.CarId);
+            var customer = _customerService.GetById(rental.CustomerId);
+            if( car.Data.FindeksScore <= customer.Data.FindeksScore)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
 
         public IResult Update(Rental rental)
         {

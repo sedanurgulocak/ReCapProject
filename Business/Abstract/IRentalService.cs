@@ -20,5 +20,6 @@ namespace Business.Abstract
         IDataResult<List<RentalDetailDto>> GetRentalDetailsById(int carId);
 
         bool IsRentCheck(Rental rental);
+        bool FindeksCheck(Rental rental);
     }
 }
