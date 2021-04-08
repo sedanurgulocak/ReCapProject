@@ -43,6 +43,7 @@ namespace Business.Constants
         public static string RentalAddedError = "Cannot be rented because the vehicle is not delivered";
         public static string RentalUpdatedReturnDate = "The vehicle has been received";
         public static string RentalUpdatedReturnDateError = "Vehicle already received";
+        public static string FindeksError= "Your Findeks score is insufficient";
 
         public static string AuthorizationDenied = "Yetkiniz yok";
 
@@ -52,5 +53,6 @@ namespace Business.Constants
         public static string SuccessfulLogin = "Başarılı giriş";
         public static string UserAlreadyExists = "Kullanıcı mevcut";
         public static string AccessTokenCreated = "Token oluşturuldu";
+        
     }
 }
