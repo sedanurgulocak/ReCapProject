@@ -13,5 +13,7 @@ namespace Business.Abstract
         IResult Add(Customer customer);
         IResult Delete(Customer customer);
         IResult Update(Customer customer);
+        void AddFindeksScore(int customerId, int carId);
+        
     }
 }
