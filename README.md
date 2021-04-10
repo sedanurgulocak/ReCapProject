@@ -1,13 +1,15 @@
 # ReCapProject : Car Rental System
 ![PicsArt_03-10-02 23 16](https://user-images.githubusercontent.com/64933639/110552166-e041c580-8147-11eb-8edf-e7f790ca7baf.jpg)
 
-:red_car: This repository includes the backend of the car rental system.
+:red_car: This repository includes the backend of the car rental system. <br/>
+:computer: You can reach the Frontend project here. 	:star:  [ReCapProject-Frontend](https://github.com/sedanurgulocak/ReCapProject-Frontend) 	:star:
 
 ## :tada: Getting Started
 
-The project was developed in C#, in accordance with the multi-layered architecture and SOLID principles. CRUD operations were performed using the Entity Framework. MSSQL Localdb was used for database in the project.
+The project was developed in C#, in accordance with the multi-layered architecture and SOLID principles. CRUD operations were performed using the Entity Framework. MSSQL Localdb was used for database in the project. This system includes authentication and authorization. Users can only perform transactions for which they are authorized.
 Implementations of JWT; Transaction, Cache, Validation and Performance aspects have been implemented. Fluent Validation support for Validation, 
-Autofac support for IoC added.
+Autofac support for IoC added. 
+The project includes CRUD operations for car, brand, color, car images, user, operations claim, user operation claims, customer, credit card and rental. Car rental is carried out according to certain business rules. In addition, findeks scores increase according to the users' car rentals. Each car has its own findeks score. The user must have enough Findeks points to rent a car.
 
 #### Technologies
 - .NET Core
@@ -109,3 +111,6 @@ System.IdentityModel.Tokens.Jwt v6.8.0
 
 ```
 
+
+## :fountain_pen: Author
+[Seda Nur Gülocak](https://github.com/sedanurgulocak)
